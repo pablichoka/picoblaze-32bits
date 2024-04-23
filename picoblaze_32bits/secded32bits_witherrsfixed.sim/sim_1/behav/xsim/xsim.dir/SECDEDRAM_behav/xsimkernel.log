@@ -1,0 +1,7 @@
+Running: xsim.dir/SECDEDRAM_behav/xsimk.exe -simmode gui -wdb SECDEDRAM_behav.wdb -simrunnum 0 -socket 58489
+Design successfully loaded
+Design Loading Memory Usage: 7184 KB (Peak: 7184 KB)
+Design Loading CPU Usage: 0 ms
+Simulation completed
+Simulation Memory Usage: 7804 KB (Peak: 7804 KB)
+Simulation CPU Usage: 0 ms

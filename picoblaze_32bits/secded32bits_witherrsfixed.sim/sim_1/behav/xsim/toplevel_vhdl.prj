@@ -1,0 +1,25 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/IO_strobe_logic.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/T_state_and_Reset.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/arithmatic.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/carry_flag_logic.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/flip.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/interrupt_capture.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/interrupt_logic.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/logical_bus_processing.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/picoblaze.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/program_counter.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/register_and_flag_enable.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/register_bank.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/memorias_programa/secded_RAM.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/memorias_programa/secded_test_32bits.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/shift_rotate.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/shift_rs232.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/stack_counter.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/stack_ram.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/picoblaze/zero_flag_logic.vhd" \
+"../../../../secded32bits_witherrsfixed.srcs/sources_1/imports/ficheros/toplevel.vhd" \
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,95 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.1 (win64) Build 2188600 Wed Apr  4 18:40:38 MDT 2018
+| Date         : Sat Feb  4 19:30:02 2023
+| Host         : FURIOUS-ROCKETSHIP running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file toplevel_control_sets_placed.rpt
+| Design       : toplevel
+| Device       : xc7z020
+-------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    26 |
+| Unused register locations in slices containing registers |   111 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      1 |            1 |
+|      2 |            2 |
+|      4 |            1 |
+|      8 |            1 |
+|     11 |           17 |
+|    16+ |            4 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             150 |           74 |
+| No           | No                    | Yes                    |               2 |            2 |
+| No           | Yes                   | No                     |               8 |            4 |
+| Yes          | No                    | No                     |             215 |           69 |
+| Yes          | No                    | Yes                    |               7 |            4 |
+| Yes          | Yes                   | No                     |              11 |            5 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+------------------------------------------------------+------------------------------------------------+------------------+----------------+
+|  Clock Signal  |                     Enable Signal                    |                Set/Reset Signal                | Slice Load Count | Bel Load Count |
++----------------+------------------------------------------------------+------------------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG | processor/IO_strobes/tx0                             | LED_OBUF                                       |                1 |              1 |
+|  clk_IBUF_BUFG |                                                      | LED_OBUF                                       |                2 |              2 |
+|  clk_IBUF_BUFG | processor/IO_strobes/E[0]                            | LED_OBUF                                       |                1 |              2 |
+|  clk_IBUF_BUFG | processor/get_interrupt/write_event0                 | processor/basic_control/internal_T_state_reg_0 |                2 |              4 |
+|  clk_IBUF_BUFG |                                                      | processor/basic_control/internal_T_state_reg_0 |                4 |              8 |
+|  clk_IBUF_BUFG | processor/basic_control/count_value_reg[9]_0         | processor/get_interrupt/SS[0]                  |                5 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[2]                         |                                                |                2 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[4]                         |                                                |                8 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[11]                        |                                                |                5 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[8]                         |                                                |                2 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[3]                         |                                                |                2 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[12]                        |                                                |                2 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[7]                         |                                                |                5 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[13]                        |                                                |                2 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[0]                         |                                                |                3 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[1]                         |                                                |                4 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[5]                         |                                                |                3 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[10]                        |                                                |                3 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[15]                        |                                                |                3 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[6]                         |                                                |                7 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[9]                         |                                                |                5 |             11 |
+|  clk_IBUF_BUFG | processor/stack_control/E[14]                        |                                                |                2 |             11 |
+|  clk_IBUF_BUFG | processor/IO_strobes/p_0_in                          |                                                |               10 |             39 |
+|  clk_IBUF_BUFG | program/rd_mem_code_reg[38]_1[0]                     |                                                |               11 |             39 |
+|  clk_IBUF_BUFG | processor/reg_and_flag_enables/register_write_enable |                                                |                8 |             64 |
+|  clk_IBUF_BUFG |                                                      |                                                |               74 |            150 |
++----------------+------------------------------------------------------+------------------------------------------------+------------------+----------------+
+
+

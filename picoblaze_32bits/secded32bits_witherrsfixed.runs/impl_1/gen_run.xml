@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1675535354">
+  <File Type="PWROPT-DCP" Name="toplevel_pwropt.dcp"/>
+  <File Type="ROUTE-PWR" Name="toplevel_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="toplevel.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="toplevel_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="toplevel_reports.tcl"/>
+  <File Type="BG-DRC" Name="toplevel.drc"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="toplevel_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="toplevel_timing_summary_init.rpt"/>
+  <File Type="OPT-HWDEF" Name="toplevel.hwdef"/>
+  <File Type="OPT-DCP" Name="toplevel_opt.dcp"/>
+  <File Type="OPT-DRC" Name="toplevel_drc_opted.rpt"/>
+  <File Type="OPT-TIMING" Name="toplevel_timing_summary_opted.rpt"/>
+  <File Type="PWROPT-DRC" Name="toplevel_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="toplevel_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="toplevel_placed.dcp"/>
+  <File Type="PLACE-IO" Name="toplevel_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="toplevel_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="toplevel_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="toplevel_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="toplevel_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="toplevel_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="toplevel_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="toplevel_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="toplevel_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="toplevel_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="toplevel_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="toplevel_drc_physopted.rpt"/>
+  <File Type="BG-BIT" Name="toplevel.bit"/>
+  <File Type="PHYSOPT-TIMING" Name="toplevel_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="toplevel_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="toplevel_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="toplevel_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="toplevel_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="toplevel_drc_routed.pb"/>
+  <File Type="BITSTR-MSK" Name="toplevel.msk"/>
+  <File Type="ROUTE-DRC-RPX" Name="toplevel_drc_routed.rpx"/>
+  <File Type="BG-BGN" Name="toplevel.bgn"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="toplevel_methodology_drc_routed.rpt"/>
+  <File Type="BITSTR-RBT" Name="toplevel.rbt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="toplevel_methodology_drc_routed.rpx"/>
+  <File Type="BG-BIN" Name="toplevel.bin"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="toplevel_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="toplevel_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="toplevel_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="toplevel_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="toplevel_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="toplevel_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="toplevel_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="toplevel_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="toplevel.vdi"/>
+  <File Type="ROUTE-CLK" Name="toplevel_clock_utilization_routed.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="toplevel_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="toplevel_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="toplevel_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="toplevel_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="toplevel_timing_summary_postroute_physopted.rpx"/>
+  <File Type="BITSTR-NKY" Name="toplevel.nky"/>
+  <File Type="BITSTR-BMM" Name="toplevel_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="toplevel.mmi"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="toplevel.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="toplevel.sysdef"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/IO_strobe_logic.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/IO_strobe_logic.vhd"/>
+        <Attr Name="ImportTime" Val="1029482690"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/T_state_and_Reset.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/T_state_and_Reset.vhd"/>
+        <Attr Name="ImportTime" Val="1029482690"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/arithmatic.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/arithmatic.vhd"/>
+        <Attr Name="ImportTime" Val="1648466528"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/carry_flag_logic.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/carry_flag_logic.vhd"/>
+        <Attr Name="ImportTime" Val="1029482690"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/flip.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/flip.vhd"/>
+        <Attr Name="ImportTime" Val="1666024044"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/interrupt_capture.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/interrupt_capture.vhd"/>
+        <Attr Name="ImportTime" Val="1029482690"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/interrupt_logic.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/interrupt_logic.vhd"/>
+        <Attr Name="ImportTime" Val="1034347510"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/logical_bus_processing.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/logical_bus_processing.vhd"/>
+        <Attr Name="ImportTime" Val="1648489592"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/picoblaze.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/picoblaze.vhd"/>
+        <Attr Name="ImportTime" Val="1661879112"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/program_counter.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/program_counter.vhd"/>
+        <Attr Name="ImportTime" Val="1648661828"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/register_and_flag_enable.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/register_and_flag_enable.vhd"/>
+        <Attr Name="ImportTime" Val="1651771902"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/register_bank.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/register_bank.vhd"/>
+        <Attr Name="ImportTime" Val="1648489852"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/memorias_programa/secded_RAM.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/memorias_programa/secded_RAM.vhd"/>
+        <Attr Name="ImportTime" Val="1663585087"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/memorias_programa/secded_test_32bits.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../PicoBlaze_Digilent3EStarter_distrib_AHC/PicoBlaze distribution and Documentation/picoblaze/c/secded_test_32bits.vhd"/>
+        <Attr Name="ImportTime" Val="1674660856"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/shift_rotate.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/shift_rotate.vhd"/>
+        <Attr Name="ImportTime" Val="1648488412"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/shift_rs232.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/shift_rs232.vhd"/>
+        <Attr Name="ImportTime" Val="1651773114"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/stack_counter.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/stack_counter.vhd"/>
+        <Attr Name="ImportTime" Val="1034347686"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/stack_ram.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/stack_ram.vhd"/>
+        <Attr Name="ImportTime" Val="1034347742"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/picoblaze/zero_flag_logic.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/picoblaze/zero_flag_logic.vhd"/>
+        <Attr Name="ImportTime" Val="1647866612"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/ficheros/toplevel.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/ficheros/toplevel.vhd"/>
+        <Attr Name="ImportTime" Val="1662665240"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="toplevel"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/fichero_restricciones.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../picoblaze_32bits_vivado_helloworld_secded_fixed/SecDes con Picoblaze a 32bis Pablo Ruiz.srcs/constrs_1/new/fichero_restricciones.xdc"/>
+        <Attr Name="ImportTime" Val="1670958579"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/fichero_restricciones.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

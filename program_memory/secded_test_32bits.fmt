@@ -1,0 +1,421 @@
+  1   0              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  2   0              ;     
+  3   0              ; Programa: Helloworld           
+  4   0              ; Transmision RS-232 por software. 
+  5   0              ; 115200  bps, 8 data bits, no parity, 1 stop bit, no flow control,
+  6   0              ;
+  7   0              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  8   0              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  9   0              ;declaracion de constantes y variables
+ 10   0              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;                  
+ 11   0              :CONSTANT   RS232        00001111     ; puerto comunicacion serie es el FFFFFFFF
+ 12   0              ; CONSTANT	d0, 50
+ 13   0              ; CONSTANT	d1, 51
+ 14   0              ; CONSTANT	d2, 52
+ 15   0              ; CONSTANT	d3, 53
+ 16   0              ; CONSTANT	d4, 54
+ 17   0              ; CONSTANT	d5, 55
+ 18   0              ; CONSTANT	d6, 56
+ 19   0              ; CONSTANT	d7, 57
+ 20   0              ; CONSTANT	d8, 58
+ 21   0              ; CONSTANT	d9, 59
+ 22   0              ; CONSTANT	d10, 5A
+ 23   0              ; CONSTANT	d11, 5B
+ 24   0              ; CONSTANT	d12, 5C
+ 25   0              ; CONSTANT	d13, 5D
+ 26   0              ; CONSTANT	d14, 5E
+ 27   0              ; CONSTANT	d15, 5F
+ 28   0              ; rx es el bit 0 del puerto 00(entrada)
+ 29   0              ; tx es el bit 7 del puerto 00(salida), esto es porque
+ 30   0              ;el hyperterminal envia primero el LSB, por eso vamos desplazando a la 
+ 31   0              ;izquierda al recibir, y al enviar tambien, con lo que enviamos de nuevo
+ 32   0              ;el LSB primero como corresponde para que lo entienda el hyperterminal
+ 33   0              :NAMEREG    S1           TXREG        ;buffer de transmision
+ 34   0              :NAMEREG    S2           RXREG        ;buffer de recepcion
+ 35   0              :NAMEREG    S3           CONTBIT      ;contador de los 8 bits de datos
+ 36   0              :NAMEREG    S4           CONT1        ;contador de retardo1
+ 37   0              :NAMEREG    S5           CONT2        ;contador de retardo2
+ 38   0              :NAMEREG    S6           AUX          
+ 39   0              :NAMEREG    S7           CONT3        
+ 40   0              :NAMEREG    S8           SHOW_REG     
+ 41   0              :NAMEREG    S9           AUX2         
+ 42   0              :NAMEREG    S10          AUX3         
+ 43   0              :NAMEREG    S11          AUX4         
+ 44   0              :NAMEREG    S12          CONT4        
+ 45   0              
+ 46   0              ;
+ 47   0              :ADDRESS    00           ;el programa se cargara a partir de la dir 00
+ 48   0              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 49   0              ;Inicio del programa
+ 50   0              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 51   0              :DISABLE    INTERRUPT    
+ 52   1 START        ;esperamos a recibir un caracter
+ 53   1              ; CALL		recibe
+ 54   1              ; LOAD		txreg, FFFFFFFF
+ 55   1              ; OUTPUT		txreg, 00000050
+ 56   1              ; CALL		recibe
+ 57   1              ; INPUT		rxreg, 00000050 ;posicion 0
+ 58   1              ; LOAD 		aux, rxreg
+ 59   1              ; CALL		show
+ 60   1              ; CALL		recibe
+ 61   1              ; LOAD		txreg, 0000FFFF
+ 62   1              ; OUTPUT		txreg, 0000005E
+ 63   1              ; CALL		recibe
+ 64   1              ; INPUT		rxreg, 0000005E ;posicion 14
+ 65   1              ; LOAD 		aux, rxreg
+ 66   1              ; CALL		show
+ 67   1              
+ 68   1              ; CALL		recibe
+ 69   1              ; LOAD		txreg, FFFFFFFF
+ 70   1              ; OUTPUT		txreg, 00000050;posicion 1
+ 71   1              ; LOAD		txreg, 000F000F
+ 72   1              ; OUTPUT		txreg, 00000053;posicion 4
+ 73   1              ; LOAD		txreg, ABCDEF98
+ 74   1              ; OUTPUT		txreg, 0000005A;posicion 11
+ 75   1              :CALL       RECIBE       
+ 76   2              :CALL       RECORRER     
+ 77   3              
+ 78   3              :JUMP       START        
+ 79   4              
+ 80   4 RECORRER     
+ 81   4              
+ 82   4              ; LOAD		aux, 0000FFFF
+ 83   4              ; CALL		show
+ 84   4              :INPUT      RXREG        0000005E     ;obtengo un dato
+ 85   5              :LOAD       AUX          RXREG        ; cargo el dato en aux
+ 86   6              :CALL       SHOW         ;lo muestro
+ 87   7              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+ 88   7              ; LOAD 		aux, rxreg; cargo el dato en aux
+ 89   7              ; CALL		show ;lo muestro
+ 90   7              ;CALL 		saltoLinea
+ 91   7              ; INPUT		rxreg, 00000080 ;obtengo un codigo de error
+ 92   7              ; LOAD 		aux, rxreg; cargo el dato en aux
+ 93   7              ; CALL		show ;lo muestro
+ 94   7              :CALL       RECIBE       
+ 95   8              :INPUT      RXREG        00000050     ;obtengo un dato
+ 96   9              :LOAD       AUX          RXREG        ; cargo el dato en aux
+ 97   A              :CALL       SHOW         ;lo muestro
+ 98   B              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+ 99   B              ; LOAD 		aux, rxreg; cargo el dato en aux
+100   B              ; CALL		show ;lo muestro
+101   B              :CALL       RECIBE       
+102   C              :INPUT      RXREG        00000052     ;obtengo un dato
+103   D              :LOAD       AUX          RXREG        ; cargo el dato en aux
+104   E              :CALL       SHOW         ;lo muestro
+105   F              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+106   F              ; LOAD 		aux, rxreg; cargo el dato en aux
+107   F              ; CALL		show ;lo muestro
+108   F              :CALL       RECIBE       
+109  10              :INPUT      RXREG        00000053     ;obtengo un dato
+110  11              :LOAD       AUX          RXREG        ; cargo el dato en aux
+111  12              :CALL       SHOW         ;lo muestro
+112  13              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+113  13              ; LOAD 		aux, rxreg; cargo el dato en aux
+114  13              ; CALL		show ;lo muestro
+115  13              :CALL       RECIBE       
+116  14              :INPUT      RXREG        00000054     ;obtengo un dato
+117  15              :LOAD       AUX          RXREG        ; cargo el dato en aux
+118  16              :CALL       SHOW         ;lo muestro
+119  17              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+120  17              ; LOAD 		aux, rxreg; cargo el dato en aux
+121  17              ; CALL		show ;lo muestro
+122  17              :CALL       RECIBE       
+123  18              :INPUT      RXREG        00000055     ;obtengo un dato
+124  19              :LOAD       AUX          RXREG        ; cargo el dato en aux
+125  1A              :CALL       SHOW         ;lo muestro
+126  1B              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+127  1B              ; LOAD 		aux, rxreg; cargo el dato en aux
+128  1B              ; CALL		show ;lo muestro
+129  1B              :CALL       RECIBE       
+130  1C              :INPUT      RXREG        00000056     ;obtengo un dato
+131  1D              :LOAD       AUX          RXREG        ; cargo el dato en aux
+132  1E              :CALL       SHOW         ;lo muestro
+133  1F              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+134  1F              ; LOAD 		aux, rxreg; cargo el dato en aux
+135  1F              ; CALL		show ;lo muestro
+136  1F              :CALL       RECIBE       
+137  20              :INPUT      RXREG        00000057     ;obtengo un dato
+138  21              :LOAD       AUX          RXREG        ; cargo el dato en aux
+139  22              :CALL       SHOW         ;lo muestro
+140  23              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+141  23              ; LOAD 		aux, rxreg; cargo el dato en aux
+142  23              ; CALL		show ;lo muestro
+143  23              :CALL       RECIBE       
+144  24              :INPUT      RXREG        00000058     ;obtengo un dato
+145  25              :LOAD       AUX          RXREG        ; cargo el dato en aux
+146  26              :CALL       SHOW         ;lo muestro
+147  27              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+148  27              ; LOAD 		aux, rxreg; cargo el dato en aux
+149  27              ; CALL		show ;lo muestro
+150  27              :CALL       RECIBE       
+151  28              :INPUT      RXREG        00000059     ;obtengo un dato
+152  29              :LOAD       AUX          RXREG        ; cargo el dato en aux
+153  2A              :CALL       SHOW         ;lo muestro
+154  2B              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+155  2B              ; LOAD 		aux, rxreg; cargo el dato en aux
+156  2B              ; CALL		show ;lo muestro
+157  2B              :CALL       RECIBE       
+158  2C              :INPUT      RXREG        0000005A     ;obtengo un dato
+159  2D              :LOAD       AUX          RXREG        ; cargo el dato en aux
+160  2E              :CALL       SHOW         ;lo muestro
+161  2F              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+162  2F              ; LOAD 		aux, rxreg; cargo el dato en aux
+163  2F              ; CALL		show ;lo muestro
+164  2F              :CALL       RECIBE       
+165  30              :INPUT      RXREG        0000005B     ;obtengo un dato
+166  31              :LOAD       AUX          RXREG        ; cargo el dato en aux
+167  32              :CALL       SHOW         ;lo muestro
+168  33              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+169  33              ; LOAD 		aux, rxreg; cargo el dato en aux
+170  33              ; CALL		show ;lo muestro
+171  33              :CALL       RECIBE       
+172  34              :INPUT      RXREG        0000005C     ;obtengo un dato
+173  35              :LOAD       AUX          RXREG        ; cargo el dato en aux
+174  36              :CALL       SHOW         ;lo muestro
+175  37              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+176  37              ; LOAD 		aux, rxreg; cargo el dato en aux
+177  37              ; CALL		show ;lo muestro
+178  37              :CALL       RECIBE       
+179  38              :INPUT      RXREG        0000005D     ;obtengo un dato
+180  39              :LOAD       AUX          RXREG        ; cargo el dato en aux
+181  3A              :CALL       SHOW         ;lo muestro
+182  3B              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+183  3B              ; LOAD 		aux, rxreg; cargo el dato en aux
+184  3B              ; CALL		show ;lo muestro
+185  3B              :CALL       RECIBE       
+186  3C              :INPUT      RXREG        00000051     ;obtengo un dato
+187  3D              :LOAD       AUX          RXREG        ; cargo el dato en aux
+188  3E              :CALL       SHOW         ;lo muestro
+189  3F              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+190  3F              ; LOAD 		aux, rxreg; cargo el dato en aux
+191  3F              ; CALL		show ;lo muestro
+192  3F              :CALL       RECIBE       
+193  40              :INPUT      RXREG        0000005F     ;obtengo un dato
+194  41              :LOAD       AUX          RXREG        ; cargo el dato en aux
+195  42              :CALL       SHOW         ;lo muestro
+196  43              ; INPUT		rxreg, 00000070 ;obtengo un codigo de error
+197  43              ; LOAD 		aux, rxreg; cargo el dato en aux
+198  43              ; CALL		show ;lo muestro
+199  43              ; CALL		recibe
+200  43              ; ; LOAD		aux, 000000FF ;obtengo un dato
+201  43              ; ; SHIFTRS232	aux; 
+202  43              ; ; CALL		show ;lo muestro
+203  43              :CALL       SALTOLINEA   
+204  44              ; ; CALL		recibe
+205  44              
+206  44              
+207  44              :RETURN     
+208  45              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+209  45              ;Rutina de recepcion de caracteres
+210  45              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+211  45 RECIBE       ;esperamos a que se reciba un bit de inicio
+212  45              :INPUT      RXREG        RS232        
+213  46              :AND        RXREG        00000080     
+214  47              :JUMP       NZ           RECIBE       
+215  48              :CALL       WAIT_05BIT   
+216  49              ;almacenamos los 8 bits de datos
+217  49              :LOAD       CONTBIT      00000009     
+218  4A NEXT_RX_BIT  :CALL       WAIT_1BIT    
+219  4B              :SR0        RXREG        
+220  4C              :INPUT      S0           RS232        
+221  4D              :AND        S0           00000080     ;esto se hace para obtener quedarnos solo con el bit más significativo (de 8 bits)
+222  4E              :OR         RXREG        S0           
+223  4F              :SUB        CONTBIT      00000001     
+224  50              :JUMP       NZ           NEXT_RX_BIT  
+225  51              ;SHIFTRS232 rxreg
+226  51              :RETURN     
+227  52              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+228  52              ;Rutina de transmision de caracteres
+229  52              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+230  52 TRANSMITE    ;enviamos un bit de inicio
+231  52              :LOAD       S0           00000000     
+232  53              :OUTPUT     S0           RS232        
+233  54              :CALL       WAIT_1BIT    
+234  55              ;enviamos los 8 bits de datos
+235  55              :LOAD       CONTBIT      00000008     
+236  56 NEXT_TX_BIT  :OUTPUT     TXREG        RS232        
+237  57              :CALL       WAIT_1BIT    
+238  58              :SR0        TXREG        
+239  59              :SUB        CONTBIT      00000001     
+240  5A              :JUMP       NZ           NEXT_TX_BIT  
+241  5B              ;enviamos un bit de parada
+242  5B              :LOAD       S0           FF           
+243  5C              :OUTPUT     S0           RS232        
+244  5D              :CALL       WAIT_1BIT    
+245  5E              :RETURN     
+246  5F              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+247  5F              ;Rutina espera 1 bit (a 9600bps)
+248  5F              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+249  5F              ;clk=50MHz, 9600bps, cont1=0A, cont2=80
+250  5F              ;esta rutina ejecuta 1 + (1 + 10*(1 + 128*2 + 2)) + 1 = 2593 instruciones,
+251  5F              ;aproximandose al numero teorico de (104,16us/bit)/(0,04 us/instruc) = 2604,166 instr/bit necesarias.
+252  5F              ;clk=40MHz, 57600bps, cont1=05, cont2=21
+253  5F              ;esta rutina ejecuta 1 + (1 + 5*(1 + 33*2 + 2)) + 1 =  instruciones,
+254  5F              ;aproximandose al numero teorico de (17,36us/bit)/(0,05 us/instruc) = 347,2 instr/bit necesarias.
+255  5F              ;clk=50MHz, 115200bps, cont1=03, cont2=22
+256  5F              ;esta rutina ejecuta 1 + (1 + 3*(1 + 34*2 + 2)) + 1 = 216 instruciones,
+257  5F              ;aproximandose al numero teorico de (8,68us/bit)/(0,04 us/instruc) = 217 instr/bit necesarias.
+258  5F              ;clk=50MHz, 230400bps, cont1= 03, cont2= 10
+259  5F              ;esta rutina ejecuta 1 + (1 + 3*(1 + 16*2 + 2)) + 1 = 108 instruciones,
+260  5F              ;aproximandose al numero teorico de (4,34us/bit)/(0,04 us/instruc) = 108,5 instr/bit necesarias.
+261  5F              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+262  5F              ;OJO: con el USB2COM no he conseguido pasar de los 230400bps bien. 
+263  5F              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+264  5F              ;clk=50MHz, 460800bps, cont1= 03, cont2=06 OJO:Hay que ponerle 1 menos a cont2 y que tome 
+265  5F              ;caracteres ascii de 7 bits para que funcione.
+266  5F              ;esta rutina ejecuta 1 + (1 + 3*(1 + 7*2 + 2)) + 1 = 54 instruciones,
+267  5F              ;aproximandose al numero teorico de (2,17us/bit)/(0,04 us/instruc) = 54,25 instr/bit necesarias.
+268  5F              ;clk=50MHz, 921600bps, cont1=01, cont2=0A NO FUNCIONA
+269  5F              ;esta rutina ejecuta 1 + (1 + 1*(1 + 10*2 + 2)) + 1 = 26 instruciones,
+270  5F              ;aproximandose al numero teorico de (1,085us/bit)/(0,04 us/instruc) = 27,127 instr/bit necesarias.
+271  5F              
+272  5F              ;PARA PICOBLAZE A 100MHz
+273  5F              
+274  5F              ;clk=100MHz, 115200bps, cont1=01, cont2=D6
+275  5F              ;esta rutina ejecuta 1 + (1 + 1*(1 + 214*2 + 2)) + 1 = 434 instruciones,
+276  5F              ;aproximandose al numero teorico de (8,68us/bit)/(0,02 us/instruc) = 434 instr/bit necesarias.
+277  5F              
+278  5F              
+279  5F              
+280  5F WAIT_1BIT    :LOAD       CONT1        00000001     
+281  60 ESPERA2      :LOAD       CONT2        000000D6     
+282  61 ESPERA1      :SUB        CONT2        00000001     
+283  62              :JUMP       NZ           ESPERA1      
+284  63              :SUB        CONT1        00000001     
+285  64              :JUMP       NZ           ESPERA2      
+286  65              :RETURN     
+287  66              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+288  66              ;Rutina espera 0,5 bits (bit de inicio, a 9600bps)
+289  66              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+290  66              ;clk=50MHz, 9600bps, cont1=05, cont2=80
+291  66              ;1 + (1 + 5*(1 + 128*2 + 2)) + 1 = 1298; aprox = 1302
+292  66              ;clk=40MHz, 57600bps, cont1=03, cont2=1B
+293  66              ;1 + (1 + 3*(1 + 27*2 + 2)) + 1 = 1298; aprox = 173.6
+294  66              ;clk=50MHz, 115200bps, cont1=03, cont2=10
+295  66              ;1 + (1 + 3*(1 + 16*2 + 2)) + 1 = 108; aprox = 108.5
+296  66              ;clk=50MHz, 230400bps, cont1= 03, cont2= 07
+297  66              ;1 + (1 + 3*(1 + 7*2 + 2)) + 1 = 54; aprox = 54,25
+298  66              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+299  66              ;OJO: con el USB2COM no he conseguido pasar de los 230400bps bien. 
+300  66              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+301  66              ;clk=50MHz, 460800bps, cont1= 01, cont2= 0A
+302  66              ;1 + (1 + 1*(1 + 10*2 + 2)) + 1 = 26; aprox = 27,125
+303  66              ;clk=50MHz, 921600bps, cont1=01, cont2=04 NO FUNCIONA
+304  66              ;1 + (1 + 1*(1 + 4*2 + 2)) + 1 = 14; aprox = 13,56
+305  66              
+306  66              ;PARA PICOBLAZE A 100MHz	
+307  66              
+308  66              ;clk=100MHz, 115200bps, cont1=02, cont2=34
+309  66              ;1 + (1 + 2*(1 + 52*2 + 2)) + 1 = 218; aprox = 217
+310  66              
+311  66              
+312  66 WAIT_05BIT   :LOAD       CONT1        00000002     
+313  67 ESPERA4      :LOAD       CONT2        00000034     
+314  68 ESPERA3      :SUB        CONT2        00000001     
+315  69              :JUMP       NZ           ESPERA3      
+316  6A              :SUB        CONT1        00000001     
+317  6B              :JUMP       NZ           ESPERA4      
+318  6C              :RETURN     
+319  6D              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+320  6D              ; FIN
+321  6D              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+322  6D              
+323  6D SHOW         
+324  6D              :LOAD       CONT3        00000020     ;32
+325  6E SHOW_START   
+326  6E              :LOAD       SHOW_REG     AUX          
+327  6F              :AND        SHOW_REG     80000000     ;nos quedamos solo con el bit mas significativo
+328  70              :OR         SHOW_REG     00000000     ;comparamos el valor del bit mas significativo, si es cero, la or dara cero, si no , es un uno
+329  71              :JUMP       NZ           UNO          ;si no es cero, vamos a imprimir un uno
+330  72              :JUMP       CERO         
+331  73 SHOW_AUX     
+332  73              :RL         AUX          
+333  74              :SUB        CONT3        00000001     
+334  75              :JUMP       NZ           SHOW_START   
+335  76              :LOAD       TXREG        0000000A     
+336  77              :CALL       TRANSMITE    
+337  78              :LOAD       TXREG        0000000D     
+338  79              :CALL       TRANSMITE    
+339  7A              :RETURN     
+340  7B              
+341  7B UNO          
+342  7B              :LOAD       TXREG        00000031     ;1 ascii
+343  7C              :CALL       TRANSMITE    
+344  7D              :JUMP       SHOW_AUX     
+345  7E              
+346  7E CERO         
+347  7E              :LOAD       TXREG        00000030     ; 0 ascii
+348  7F              :CALL       TRANSMITE    
+349  80              :JUMP       SHOW_AUX     
+350  81              
+351  81 SALTOLINEA   :LOAD       TXREG        0000000A     
+352  82              :CALL       TRANSMITE    
+353  83              :LOAD       TXREG        0000000D     
+354  84              :CALL       TRANSMITE    
+355  85              :RETURN     
+356  86              
+357  86              
+358  86              
+359  86              
+360  86              ;;TEST DE INSTRUCCIONES
+361  86              
+362  86              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+363  86              ;;;;;;;;;;;;;:TEST SHIFTRS232;;;;;;;;;;;;;;;;
+364  86              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+365  86              ; LOAD		aux, 484F4C41	;HOLA
+366  86              ; LOAD		aux2, 00000004
+367  86              ; bucle:	SHIFTRS232	aux
+368  86              ; LOAD		txreg, aux
+369  86              ; CALL		transmite
+370  86              ; SUB			aux2, 00000001
+371  86              ; JUMP 		NZ, bucle
+372  86              
+373  86              ;
+374  86              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+375  86              ;;;;;;;;TEST ENABLE/DISABLE/INTERRUPT;;;;;;;;
+376  86              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+377  86              ; rutina: LOAD		aux, 00000005
+378  86              ; LOAD		aux3, 00000040
+379  86              ; rutina1:CALL		transmite
+380  86              ; SUB			aux, 00000001
+381  86              ; JUMP		Z, rutina2
+382  86              ; ADD			aux3, 00000001
+383  86              ; LOAD		txreg, aux3
+384  86              ; JUMP 		rutina1
+385  86              ; rutina2:ENABLE		INTERRUPT
+386  86              ; LOAD		aux2, 0000000A
+387  86              ; bucle:	SUB			aux2, 00000001
+388  86              ; JUMP		NZ, bucle
+389  86              ; LOAD		aux2, 0000000A
+390  86              ; JUMP		bucle
+391  86              
+392  86              ; interrup:		;ESTA SUBRUTINA HA DE COLOCARSE AL FINAL DEL PROGRAMA
+393  86              ; DISABLE		INTERRUPT
+394  86              ; CALL		recibe
+395  86              ; LOAD		txreg, rxreg
+396  86              ; call		transmite
+397  86              ; LOAD		txreg, aux2
+398  86              ; ADD			txreg, 00000030
+399  86              ; call		transmite
+400  86              ; RETURNI		ENABLE
+401  86              ; LOAD		txreg, 0000002F
+402  86              ; CALL		transmite
+403  86              ; ADDRESS		000007FF	;aqui salta cuando hay una interrupcion
+404  86              ; JUMP		interrup
+405  86              ;
+406  86              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+407  86              ;;;;;;;;;;;;;;TEST ADDCY/SUBCY;;;;;;;;;;;;;;;
+408  86              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+409  86              
+410  86              ; LOAD		aux3, FFFFFFFF
+411  86              ; LOAD		aux2, 0000000A ;10
+412  86              ; add		aux3, 00000001 ;generamos carry --> 1
+413  86              ; addcy		aux2, 0000000A ;10 --> 21
+414  86              ; LOAD		aux, aux2
+415  86              ; call		show
+416  86              ; LOAD		aux3, FFFFFFFF
+417  86              ; LOAD		aux2, 0000000A ;10
+418  86              ; add		aux3, 00000001 ;generamos carry --> 1
+419  86              ; subcy		aux2, 00000008 ;8 --> 1
+420  86              ; LOAD		aux, aux2
+421  86              ; call		sho

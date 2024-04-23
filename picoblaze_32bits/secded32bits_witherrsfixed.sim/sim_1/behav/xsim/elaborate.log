@@ -1,0 +1,40 @@
+Vivado Simulator 2018.1
+Copyright 1986-1999, 2001-2017 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2018.1/bin/unwrapped/win64.o/xelab.exe -wto 4a7e5250ae394f5e866286aed26770dd --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot toplevel_tb_behav xil_defaultlib.toplevel_tb -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package unisim.vcomponents
+Compiling architecture low_level_definition of entity xil_defaultlib.IO_strobe_logic [io_strobe_logic_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.addsub8 [addsub8_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.arithmetic_process [arithmetic_process_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.shift_rotate [shift_rotate_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.flip [flip_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.shift_rs232 [shift_rs232_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.logical_bus_processing [logical_bus_processing_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.T_state_and_Reset [t_state_and_reset_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.register_and_flag_enable [register_and_flag_enable_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.carry_flag_logic [carry_flag_logic_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.zero_flag_logic [zero_flag_logic_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.program_counter [program_counter_default]
+Compiling architecture behavioral of entity xil_defaultlib.register_bank [\register_bank(m=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.ram_x1s [\ram_x1s(m=4)\]
+Compiling architecture low_level_definition of entity xil_defaultlib.stack_ram [\stack_ram(m=4,n=11)\]
+Compiling architecture low_level_definition of entity xil_defaultlib.stack_counter [\stack_counter(n=4)\]
+Compiling architecture low_level_definition of entity xil_defaultlib.interrupt_capture [interrupt_capture_default]
+Compiling architecture low_level_definition of entity xil_defaultlib.interrupt_logic [interrupt_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.picoblaze [picoblaze_default]
+Compiling architecture behavior of entity xil_defaultlib.SECDEDRAM [secdedram_default]
+Compiling architecture v1 of entity xil_defaultlib.secded_test_32bits [secded_test_32bits_default]
+Compiling architecture behavioral of entity xil_defaultlib.toplevel [toplevel_default]
+Compiling architecture behavioral of entity xil_defaultlib.toplevel_tb
+Built simulation snapshot toplevel_tb_behav
